@@ -1,3 +1,9 @@
+The LineGraph code was written by Elliot Saba and made avaiable under the MIT License, 
+see LineGraphLicense.txt for details.  The source can be downloaded from:
+https://github.com/EE590-Spring2014/LineGraph.git
+
+All other elements of the code are covered by the following license:
+
 The MIT License (MIT)
 
 Copyright (c) 2015 Brian Howard

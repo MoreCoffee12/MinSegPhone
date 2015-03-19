@@ -111,7 +111,7 @@ namespace MinSegApp
             graphControllerEffort.setColorBackground(fR, fG, fB, 0.0f);
 
             // Configure the line plots scaling
-            graphPosition.setYLim(-0.2f, 0.2f);
+            graphPosition.setYLim(-1.0f, 1.0f);
             graphVelocity.setYLim(-0.1f, 0.1f);
             graphPitchAngle.setYLim(-0.02f, 0.02f);
             graphPitchAngleRate_Avg.setYLim(-1.0f, 1.0f);
