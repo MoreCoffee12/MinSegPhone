@@ -40,6 +40,18 @@ namespace MinSegApp
             graphPosition = new VisualizationTools.LineGraph((int)LineGraphPosition.ActualWidth, (int)LineGraphPosition.Height);
             LineGraphPosition.Source = graphPosition;
 
+            graphVelocity = new VisualizationTools.LineGraph((int)LineGraphVelocity.ActualWidth, (int)LineGraphVelocity.Height);
+            LineGraphVelocity.Source = graphVelocity;
+
+            graphPitchAngle = new VisualizationTools.LineGraph((int)LineGraphPitchAngle.ActualWidth, (int)LineGraphPitchAngle.Height);
+            LineGraphPitchAngle.Source = graphPitchAngle;
+
+            graphPitchAngleRate_Avg = new VisualizationTools.LineGraph((int)LineGraphPitchAngleRate_Avg.ActualWidth, (int)LineGraphPitchAngleRate_Avg.Height);
+            LineGraphPitchAngleRate_Avg.Source = graphPitchAngleRate_Avg;
+
+            graphControllerEffort = new VisualizationTools.LineGraph((int)LineGraphControllerEffort.ActualWidth, (int)LineGraphControllerEffort.Height);
+            LineGraphControllerEffort.Source = graphControllerEffort;
+
             // Initialize the buffers that recieve the data from the Arduino
             bCollectData = false;
             iChannelCount = 8;
@@ -89,12 +101,28 @@ namespace MinSegApp
             // Initialize the buffer for the frame timebase and set the color
             graphPosition.setColor(0.0f, 0.5f + fOffset, 0.0f);
             graphPosition.setColorBackground(fR, fG, fB, 0.0f);
+            graphVelocity.setColor(0.0f, 0.5f + fOffset, 0.0f);
+            graphVelocity.setColorBackground(fR, fG, fB, 0.0f);
+            graphPitchAngle.setColor(0.0f, 0.5f + fOffset, 0.0f);
+            graphPitchAngle.setColorBackground(fR, fG, fB, 0.0f);
+            graphPitchAngleRate_Avg.setColor(0.0f, 0.5f + fOffset, 0.0f);
+            graphPitchAngleRate_Avg.setColorBackground(fR, fG, fB, 0.0f);
+            graphControllerEffort.setColor(0.0f, 0.5f + fOffset, 0.0f);
+            graphControllerEffort.setColorBackground(fR, fG, fB, 0.0f);
 
             // Configure the line plots scaling
-            //graphPosition.setYLim(0.0f, 5.0f);
+            graphPosition.setYLim(-0.2f, 0.2f);
+            graphVelocity.setYLim(-0.1f, 0.1f);
+            graphPitchAngle.setYLim(-0.02f, 0.02f);
+            graphPitchAngleRate_Avg.setYLim(-1.0f, 1.0f);
+            graphControllerEffort.setYLim(-9.0f, 9.0f);
 
             // Also hook the Rendering cycle up to the CompositionTarget Rendering event so we draw frames when we're supposed to
             CompositionTarget.Rendering += graphPosition.Render;
+            CompositionTarget.Rendering += graphVelocity.Render;
+            CompositionTarget.Rendering += graphPitchAngle.Render;
+            CompositionTarget.Rendering += graphPitchAngleRate_Avg.Render;
+            CompositionTarget.Rendering += graphControllerEffort.Render;
 
             // Arduino bluetooth
             try
@@ -359,7 +387,10 @@ namespace MinSegApp
                         {
                             // Update the plots
                             graphPosition.setArray(dataPosition);
-
+                            graphVelocity.setArray(dataVelocity);
+                            graphPitchAngle.setArray(dataPitchAngle);
+                            graphPitchAngleRate_Avg.setArray(dataPitchAngleRate_Avg);
+                            graphControllerEffort.setArray(dataVolts);
                         }
 
                     }
@@ -401,6 +432,10 @@ namespace MinSegApp
 
         // graphs, gotta have the graphs
         private VisualizationTools.LineGraph graphPosition;
+        private VisualizationTools.LineGraph graphVelocity;
+        private VisualizationTools.LineGraph graphPitchAngle;
+        private VisualizationTools.LineGraph graphPitchAngleRate_Avg;
+        private VisualizationTools.LineGraph graphControllerEffort;
         private bool bClearOutput = false;
         private float[] dataPosition;
         private float[] dataVelocity;
