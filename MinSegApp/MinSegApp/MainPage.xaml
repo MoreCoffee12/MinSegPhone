@@ -7,8 +7,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Viewbox HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top">   
+        <Grid>
+            <Button x:Name="btnStartAcq" Content="Start Acquisition" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" Click="btnStartAcq_Click" Width="380"/>
 
-    <Grid>
+            <TextBlock HorizontalAlignment="Left" Margin="7,48,0,0" TextWrapping="Wrap" Text="Packet Stack (Used for debug)" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textOutput" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="288" Text="Output window" Margin="7,62,0,0"/>
 
-    </Grid>
+            <TextBlock HorizontalAlignment="Left" Margin="255,81,0,0" TextWrapping="Wrap" Text="Valid Packet" VerticalAlignment="Top" Height="20" TextAlignment="Right" Width="100"/>
+            <Rectangle x:Name="rectFrameOK" Fill="{StaticResource PhoneForegroundBrush}" HorizontalAlignment="Left" Height="20" Margin="362,79,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="255,54,0,0" TextWrapping="Wrap" Text="BT is OK" VerticalAlignment="Top" Height="20" TextAlignment="Right" Width="100"/>
+            <Rectangle x:Name="rectBTOK" Fill="{StaticResource PhoneForegroundBrush}" HorizontalAlignment="Left" Height="20" Margin="362,52,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+
+            <TextBlock HorizontalAlignment="Left" Margin="11,100,0,0" TextWrapping="Wrap" Text="Position, meters" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Image x:Name="LineGraphPosition" HorizontalAlignment="Left" Height="117" Margin="7,118,0,0" VerticalAlignment="Top" Width="374"/>
+
+        </Grid>
+    </Viewbox>
 </Page>
